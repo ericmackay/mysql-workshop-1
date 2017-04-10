@@ -1,0 +1,16 @@
+Create table Account for database decodemtl_addressbook
+Create table AddressBook for database decodemtl_addressbook
+Create table Entry for database decodemtl_addressbook
+Create table Test for database decodemtl_addressbook
+
+mysql> CREATE TABLE Accounts (name VARCHAR (30));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE AddressBook(name VARCHAR (30), address VARCHAR (50), phoneNumber VARCHAR(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE Entry(description VARCHAR(140));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE TEST(test CHAR(30));
+Query OK, 0 rows affected (0.01 sec)

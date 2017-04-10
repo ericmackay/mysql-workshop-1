@@ -1,0 +1,45 @@
+Exercise 8
+
+Reflect the data model shown in schema/addressbook_denormalized.png within database decodemtl_addressbook
+Account.id is a primary auto-increment key
+AddressBook.id is a primary auto-increment key
+Entry.id is a primary auto-increment key
+Entry.type is an ENUM column permitting home, work and other
+Entry.subtype is an ENUM column permitting phone, address and email
+
+CREATE TABLE Account (
+    id INT AUTO_INCREMENT KEY,
+    email VARCHAR(255),
+    password VARCHAR(40),
+    createdOn DATETIME,
+    modifiedOn DATETIME
+);
+Query OK, 0 rows affected (0.01 sec)
+
+CREATE TABLE AddressBook (
+    id INT AUTO_INCREMENT KEY,
+    accountId INT,
+    name VARCHAR(255),
+    createdOn DATETIME,
+    modifiedOn DATETIME
+);
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+CREATE TABLE Entry (
+    id INT AUTO_INCREMENT KEY,
+    AddressBookId INT,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
+    birthday DATETIME,
+    type ENUM ('home', 'work', 'other'),
+    subtype ENUM('phone', 'address', 'email'),
+    contentLineOne VARCHAR(255),
+    contentLineTwo VARCHAR(255),
+    contentLineThree VARCHAR(255),
+    contentLineFour VARCHAR(255),
+    contentLineFive VARCHAR(255)
+);
+
+Query OK, 0 rows affected (0.01 sec)

@@ -1,0 +1,108 @@
+Exercise 10 (Workshop Challenge)
+
+Create a data model representing a Hotel with Floors and Rooms 🏨
+This model should provide answers to the following questions:
+The list of Rooms available for rent on a specific date
+The list of Rooms which can be occupied by at least 3 people on a specific date
+The amount of unrentable Rooms (janitor closets, public laundry room, gym, etc.)
+The amount of Rooms having a private Kitchen
+The average amount of windows per Floor
+The amount of Floors having Rooms with carpets
+
+CREATE TABLE hotel (
+    id INT AUTO_INCREMENT KEY,
+    email VARCHAR(255),
+    password VARCHAR(40),
+    createdOn DATETIME,
+    modifiedOn DATETIME
+);
+
+CREATE TABLE floors (
+    id INT AUTO_INCREMENT KEY,
+    floorName VARCHAR(255),
+    createdOn DATETIME,
+    modifiedOn DATETIME
+);
+Query OK, 0 rows affected (0.01 sec)
+
+CREATE TABLE room (
+    id INT AUTO_INCREMENT KEY,
+    floorsID INT,
+    roomID INT,
+    type ENUM ('guest room', 'public laundry room', 'janitor', 'other'),
+    occupants INT,
+    carpet TINYINT(1),
+    kitchen TINYINT(1), 
+    numberOfWindows INT 
+
+);
+Query OK, 0 rows affected (0.00 sec)
+
+CREATE TABLE booking (
+    id INT AUTO_INCREMENT KEY,
+    roomID INT, 
+    checkInDate DATETIME,
+    checkOutDate DATETIME
+);
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> show tables; 
++-----------------+
+| Tables_in_hotel |
++-----------------+
+| booking         |
+| floors          |
+| hotel           |
+| room            |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> DESCRIBE hotel;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email      | varchar(255) | YES  |     | NULL    |                |
+| password   | varchar(40)  | YES  |     | NULL    |                |
+| createdOn  | datetime     | YES  |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> DESCRIBE floors;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| floorName  | varchar(255) | YES  |     | NULL    |                |
+| createdOn  | datetime     | YES  |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> DESCRIBE room;
++-----------------+------------------------------------------------------------+------+-----+---------+----------------+
+| Field           | Type                                                       | Null | Key | Default | Extra          |
++-----------------+------------------------------------------------------------+------+-----+---------+----------------+
+| id              | int(11)                                                    | NO   | PRI | NULL    | auto_increment |
+| floorsID        | int(11)                                                    | YES  |     | NULL    |                |
+| roomID          | int(11)                                                    | YES  |     | NULL    |                |
+| type            | enum('guest room','public laundry room','janitor','other') | YES  |     | NULL    |                |
+| occupants       | int(11)                                                    | YES  |     | NULL    |                |
+| carpet          | tinyint(1)                                                 | YES  |     | NULL    |                |
+| kitchen         | tinyint(1)                                                 | YES  |     | NULL    |                |
+| numberOfWindows | int(11)                                                    | YES  |     | NULL    |                |
++-----------------+------------------------------------------------------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> DESCRIBE booking;
++--------------+----------+------+-----+---------+----------------+
+| Field        | Type     | Null | Key | Default | Extra          |
++--------------+----------+------+-----+---------+----------------+
+| id           | int(11)  | NO   | PRI | NULL    | auto_increment |
+| roomID       | int(11)  | YES  |     | NULL    |                |
+| checkInDate  | datetime | YES  |     | NULL    |                |
+| checkOutDate | datetime | YES  |     | NULL    |                |
++--------------+----------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
